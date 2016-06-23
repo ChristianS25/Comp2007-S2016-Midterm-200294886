@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 //Author: Chritian Simpson
+//Student#: 200294886
+//Date: 2016-06-23
 //Function: this will be a form that allows users to add or edit data from the databse
 
 namespace COMP2007_S2016_MidTerm_2002948861
@@ -18,12 +20,19 @@ namespace COMP2007_S2016_MidTerm_2002948861
 
         }
 
+        /* this method handles the cancel button click 
+        *  event when it is pressed 
+        */
         protected void CancelButton_Click(object sender, EventArgs e)
         {
             // Redirect back to the Default page
             Response.Redirect("~/Todolist.aspx");
         }
 
+
+        /* this method handles the save button click 
+        *  event when it is pressed 
+        */
         protected void SaveButton_Click(object sender, EventArgs e)
         {
             // Use EF to connect to the server

@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 //Author: Chritian Simpson
+//Student#: 200294886
+//Date: 2016-06-23
 //Function: this will be a list of all the tasks that are to be done in a grid view
 
 namespace COMP2007_S2016_MidTerm_2002948861
@@ -23,6 +25,9 @@ namespace COMP2007_S2016_MidTerm_2002948861
             }
         }
 
+        /* this method handles the delete button click 
+        *  event when it is pressed 
+        */
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             // store which row was clicked
@@ -49,6 +54,9 @@ namespace COMP2007_S2016_MidTerm_2002948861
             }
         }
 
+        /* this method handles the populating the  
+        *  grid view with data from the database 
+        */
         protected void GetTodo()
         {
             // connect to EF
@@ -66,6 +74,9 @@ namespace COMP2007_S2016_MidTerm_2002948861
             }
         }
 
+        /* this method handles the page index changing on the grid view
+        *   
+        */
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
