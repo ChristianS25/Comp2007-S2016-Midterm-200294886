@@ -29,13 +29,13 @@ namespace COMP2007_S2016_MidTerm_2002948861
             // Use EF to connect to the server
             using (TodoConnection db = new TodoConnection())
             {
-                // use the Student model to create a new student object and
+                // use the Todo model to create a new todo object and
                 // save a new record
                 Todo newTodo = new Todo();
 
                 int TodoID = 0;
 
-                if (Request.QueryString.Count > 0) // our URL has a StudentID in it
+                if (Request.QueryString.Count > 0) // our URL has a TodoID in it
                 {
                     // get the id from the URL
                     TodoID = Convert.ToInt32(Request.QueryString["TodoID"]);
@@ -46,11 +46,11 @@ namespace COMP2007_S2016_MidTerm_2002948861
                                   select todo).FirstOrDefault();
                 }
 
-                // add form data to the new student record
+                // add form data to the new todo record
                 newTodo.TodoName = TodoNameTextBox.Text;
                 newTodo.TodoNotes = TodoNotesTextBox.Text;
 
-                // use LINQ to ADO.NET to add / insert new student into the database
+                // use LINQ to ADO.NET to add / insert new todo into the database
 
                 if (TodoID == 0)
                 {
@@ -61,7 +61,7 @@ namespace COMP2007_S2016_MidTerm_2002948861
                 // save our changes - also updates and inserts
                 db.SaveChanges();
 
-                // Redirect back to the updated students page
+                // Redirect back to the updated todo list page
                 Response.Redirect("~/TodoList.aspx");
             }
         }

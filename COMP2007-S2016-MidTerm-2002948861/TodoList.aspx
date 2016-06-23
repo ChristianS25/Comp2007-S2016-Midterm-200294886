@@ -11,6 +11,7 @@
                     OnPageIndexChanging="GridView1_PageIndexChanging"
                     PagerStyle-CssClass="pagination-ys">
                     <Columns>
+                        <asp:BoundField DataField="TodoId" HeaderText="Todo Number" Visible="true" SortExpression="TodoID" />
                         <asp:BoundField DataField="TodoName" HeaderText="Todo" Visible="true" SortExpression="TodoName" />
                         <asp:BoundField DataField="TodoNotes" HeaderText="Todo Notes" Visible="true" SortExpression="TodoNotes" />
                         <asp:templatefield HeaderText="Completed?">

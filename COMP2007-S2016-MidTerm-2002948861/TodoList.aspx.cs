@@ -28,18 +28,17 @@ namespace COMP2007_S2016_MidTerm_2002948861
             // store which row was clicked
             int selectedRow = e.RowIndex;
 
-            // get the selected StudentID using the Grid's DataKey collection
-            int TodoID = Convert.ToInt32(GridView1.DataKeys[selectedRow].Values["TodoID"]);
+            // get the selected TodoID using the Grid's DataKey collection
+            int TODOID = Convert.ToInt32(GridView1.DataKeys[selectedRow].Values["TodoID"]);
 
             // use EF to find the selected student in the DB and remove it
             using (TodoConnection db = new TodoConnection())
             {
-                // create object of the Student class and store the query string inside of it
-               Todo deletedTodo = (from Todos in db.Todos
-                                          where Todos.TodoID== TodoID
-                                          select Todos).FirstOrDefault();
-
-                // remove the selected student from the db
+                // create object of the Todo class and store the query string inside of it
+                Todo deletedTodo = (from todoRecords in db.Todos
+                                          where todoRecords.TodoID == TODOID
+                                          select todoRecords ).FirstOrDefault();
+                // remove the selected Todo from the db
                 db.Todos.Remove(deletedTodo);
 
                 // save my changes back to the database
@@ -55,7 +54,7 @@ namespace COMP2007_S2016_MidTerm_2002948861
             // connect to EF
             using (TodoConnection db = new TodoConnection())
             {
-                // query the Teams Table using EF and LINQ
+                // query the Todo Table using EF and LINQ
                 var Todo = (from allTodos in db.Todos
                              select allTodos);
 
