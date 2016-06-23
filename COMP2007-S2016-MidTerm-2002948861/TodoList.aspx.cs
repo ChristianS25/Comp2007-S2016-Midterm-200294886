@@ -6,6 +6,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.Web.ModelBinding;
+using System.Linq.Dynamic;
+
 //Author: Chritian Simpson
 //Student#: 200294886
 //Date: 2016-06-23
@@ -43,6 +46,7 @@ namespace COMP2007_S2016_MidTerm_2002948861
                 Todo deletedTodo = (from todoRecords in db.Todos
                                           where todoRecords.TodoID == TODOID
                                           select todoRecords ).FirstOrDefault();
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+deletedTodo);
                 // remove the selected Todo from the db
                 db.Todos.Remove(deletedTodo);
 
@@ -81,6 +85,43 @@ namespace COMP2007_S2016_MidTerm_2002948861
         {
             GridView1.PageIndex = e.NewPageIndex;
             this.GetTodo();
+        }
+
+        protected void PageSizeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Set the new Page size
+            GridView1.PageSize = Convert.ToInt32(PageSizeDropDownList.SelectedValue);
+
+            // refresh the grid
+            this.GetTodo();
+        }
+
+        protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (IsPostBack)
+            {
+                if (e.Row.RowType == DataControlRowType.Header) // if header row has been clicked
+                {
+                    LinkButton linkbutton = new LinkButton();
+
+                    for (int index = 0; index < GridView1.Columns.Count - 1; index++)
+                    {
+                        if (GridView1.Columns[index].SortExpression == Session["SortColumn"].ToString())
+                        {
+                            if (Session["SortDirection"].ToString() == "ASC")
+                            {
+                                linkbutton.Text = " <i class='fa fa-caret-up fa-lg'></i>";
+                            }
+                            else
+                            {
+                                linkbutton.Text = " <i class='fa fa-caret-down fa-lg'></i>";
+                            }
+
+                            e.Row.Cells[index].Controls.Add(linkbutton);
+                        }
+                    }
+                }
+            }
         }
 
     }
